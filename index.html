@@ -1,0 +1,71 @@
+<html ng-app="greeter">
+<head>
+    <link rel="stylesheet" type="text/css" href="style/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="style/style.css"/>
+
+    <script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!-- mock.js is only required for local testing -->
+    <script type="text/javascript" src="mock.js"></script>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="directives.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body id="greeterbody" ng-controller="controller"  oncontextmenu="return false;">
+
+<div class="header">
+    <div class="archlogo"></div>
+    <div class="angularlogo"></div>
+
+    <span id="current_time" class="time">{{currentTime | date:'HH:mm - dd/MM/yyyy' }}</span>
+</div>
+
+<div class="container ">
+    <div class="row center-block">
+        <div class="usercontainer" >
+
+
+            <div ng-repeat="user in users"
+                 ng-class="{hidden: user.hidden}"
+                 class="thumb"
+                 ng-click="clickUser(user.name); $event.stopPropagation();">
+
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" gravatar avatar="users[$index].avatar"/>
+                </a>
+                <span class="username">{{user.display_name}}</span>
+            </div>
+        </div>
+
+        <div class="logincontainer" ng-show="!passwordPromptHidden">
+            <form class="form-inline" role="form" ng-submit="provideSecret()" >
+                <input type="password" class="form-control" id="password_entry" placeholder="Password"
+                       ng-model="password" focus-on="focusPassword"/>
+
+
+                <div class="btn-group" dropdown is-open="status.isopen">
+                    <button type="button" class="btn btn-success dropdown-toggle" ng-disabled="disabled">
+                        {{chosenSession.name}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="session in sessions"><a href="#" ng-click="clickSession(session.key, session.name); $event.stopPropagation();" >{{session.name}}</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <alert class="animate-repeat" ng-repeat="alert in alerts" type="{{alert.type}}" >{{alert.text}}</alert>
+
+    </div>
+</div>
+
+
+</body>
+</html>

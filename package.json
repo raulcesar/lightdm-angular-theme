@@ -1,0 +1,11 @@
+{
+  "name": "angular-theme",
+  "version": "0.1.0",
+  "description": "Theme for lightdm-webkit-greeter or lightdm-tex-greeter that uses angular.js",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "author": "Raul Cesar Teixeira",
+  "license": "MIT"
+}

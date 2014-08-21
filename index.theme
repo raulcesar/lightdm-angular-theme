@@ -1,0 +1,6 @@
+[theme]
+name=AngularJS
+description=AngularJS logon
+engine=lightdm-tex-greeter
+url=index.html
+session=gnome
